@@ -1,0 +1,4 @@
+SuperUser: 
+name: admin
+email: admin@admin.com
+pass: django1234

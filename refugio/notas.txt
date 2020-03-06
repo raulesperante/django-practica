@@ -1,0 +1,39 @@
+Superuser:
+name: admin
+email: admin@admin.com
+pass: django1234
+
+Relación uno a muchos: foreignKey
+
+Una persona puede adoptar varias mascotas
+
+class Mascota(models.Model):
+    atributos...
+    persona = models.ForeignKey(Persona, null=True, black=True,
+                                on_delete=models.CASCADE)
+
+
+Uno a Uno: OneToOneField
+
+Hipotéticamente, una persona solo puede adoptar una mascota
+
+class Mascota(models.Model):
+    atributos...
+    persona = models.OneToOneField(Persona, null=True, black=True,
+                                on_delete=models.CASCADE)
+
+Mucho a muchos: ManyToManyField
+
+Una mascota puede tener aplicadas varias vacunas
+Sin pensar en distintos tipos de vacunas pensemos en una misma vacuna,
+sea la vacuna de la rabia, que es la misma vacuna pero cada un año,
+hay que voverselá a aplicar a la mascota. Por lo cual, Una mascota
+tiene asignadas varias vacunas, cuyos id son un codigo de fecha.
+
+Otro caso, un mismo id de vacuna puede estar asignados a varias mascotas.
+Por ejemplo si hubo en una fecha determinada una campaña de vacunación para
+las mascotas
+
+class Mascota(models.Model):
+    atributos...
+    vacuna = models.ManyToManyField(Vacuna)
